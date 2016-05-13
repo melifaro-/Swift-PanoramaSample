@@ -54,6 +54,18 @@ GLKQuaternion GLKQuaternionFromTwoVectors(GLKVector3 u, GLKVector3 v){
 
 @implementation PanoramaView
 
+- (void)initialize
+{
+    EAGLContext *context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1];
+    [EAGLContext setCurrentContext:context];
+    self.context = context;
+    
+    [self initDevice];
+    [self initOpenGL:context];
+    sphere = [[Sphere alloc] init:48 slices:48 radius:10.0 textureFile:nil];
+    meridians = [[Sphere alloc] init:48 slices:48 radius:8.0 textureFile:@"equirectangular-projection-lines.png"];
+}
+
 -(id) init{
 // it appears that iOS already automatically does this switch, stored in UIScreen mainscreen bounds
 //    CGRect frame = [[UIScreen mainScreen] bounds];

@@ -12,6 +12,7 @@
  */
 @interface PanoramaView : GLKView
 
+- (void)initialize;
 
 -(id) init;  // recommended init method
 
